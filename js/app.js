@@ -1,7 +1,17 @@
 /*
  * Create a list that holds all of your cards
  */
+let deckArray = [];
 
+//loads all the cards into an array that will be shuffled later
+function loadDeck() {
+    const deck = document.querySelector('.deck');
+
+    while (deck.firstElementChild) {
+        deckArray.push(deck.firstElementChild);
+        deck.removeChild(deck.firstElementChild);
+    }
+}
 
 /*
  * Display the cards on the page
@@ -25,6 +35,7 @@ function shuffle(array) {
     return array;
 }
 
+loadDeck();
 
 /*
  * set up the event listener for a card. If a card is clicked:
