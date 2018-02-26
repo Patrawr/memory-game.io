@@ -54,16 +54,20 @@ function showCard(event) {
     if (event.target.className === 'card') {
         event.target.className = 'card open show';
 
-        checkMatch(event);
+        openCards.push(event.target);
+        
+        if (openCards.length >= 2) {
+            checkMatch(event);    
+        }
+        
     }
 }
 
 //check to see if the just flipped card matches the currently flipped card
 function checkMatch (event) {
-        openCards.push(event.target);
-
-    //if the last card in the array is currently opened, check for matches
-    if(openCards[openCards.length - 1].className === 'card open show') {
+    //if the last two cards in the array are currently opened, check for matches
+    if(openCards[openCards.length - 2].className === 'card open show' && 
+       openCards[openCards.length - 1].className === 'card open show') {
         const firstCardType = openCards[openCards.length - 2].firstElementChild.className;
         const secondCardType = openCards[openCards.length - 1].firstElementChild.className;
 
