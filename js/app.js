@@ -1,6 +1,7 @@
 /*
  * Create a list that holds all of your cards
  */
+let openCards = [];
 
 
 //loads all the cards into an array that will be shuffled later
@@ -15,13 +16,6 @@ function loadDeckArray() {
 
     return deckArray;
 }
-
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -48,9 +42,61 @@ function rebuildDeck(shuffledDeck) {
     }
 }
 
+function selectCard(event) {
+    //if a card clicked in the deck
+    if(event.target.nodeName === 'LI') {
+        showCard(event);
+    }
+}
+
+function showCard(event) {
+    //flip a card if it's closed
+    if (event.target.className === 'card') {
+        event.target.className = 'card open show';
+
+        checkMatch(event);
+    }
+}
+
+//check to see if the just flipped card matches the currently flipped card
+function checkMatch (event) {
+        openCards.push(event.target);
+
+    //if the last card in the array is currently opened, check for matches
+    if(openCards[openCards.length - 1].className === 'card open show') {
+        const firstCardType = openCards[openCards.length - 2].firstElementChild.className;
+        const secondCardType = openCards[openCards.length - 1].firstElementChild.className;
+
+        //if cards match
+        if (firstCardType === secondCardType) {
+            setMatched();
+        }
+        //if not, flip them back over and clear them from the openCards array
+        else {
+            setTimeout(clearOpened,300);
+        }
+    }
+}
+
+//set both cards in the openCards array to matched
+function setMatched() {
+    openCards[openCards.length - 2].className = 'card match';
+    openCards[openCards.length - 1].className = 'card match';
+}
+
+//flip over and delete the last two cards from the array
+function clearOpened() {
+    openCards[openCards.length - 2].className = 'card';
+    openCards[openCards.length - 1].className = 'card';
+    
+    openCards.splice(openCards.length - 2,2);
+}
+
 const shuffledDeck = shuffle(loadDeckArray());
 rebuildDeck(shuffledDeck);
 
+const deck = document.querySelector('.deck');
+deck.addEventListener('click',selectCard);
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
