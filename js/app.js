@@ -10,6 +10,9 @@ function loadDeckArray() {
     let deckArray = [];
 
     while (deck.firstElementChild) {
+        //initializing state of cards
+        deck.firstElementChild.className = 'card';
+
         deckArray.push(deck.firstElementChild);
         deck.removeChild(deck.firstElementChild);
     }
@@ -113,11 +116,26 @@ function resultsScreen() {
     deck.style.display = 'none';
 }
 
+//reset the game state
+function restartGame() {
+    rebuildDeck(shuffle(loadDeckArray()));
+
+    openCards = [];
+
+    const moveCounter = document.querySelector('.moves');
+    moveCounter.textContent = 0;
+
+}
+
 const shuffledDeck = shuffle(loadDeckArray());
 rebuildDeck(shuffledDeck);
 
 const deck = document.querySelector('.deck');
 deck.addEventListener('click',selectCard);
+
+const restartButton = document.querySelector('.restart');
+restartButton.addEventListener('click',restartGame);
+
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
