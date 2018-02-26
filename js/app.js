@@ -78,7 +78,7 @@ function checkMatch (event) {
         }
         //if not, flip them back over and clear them from the openCards array
         else {
-            setTimeout(clearOpened,300);
+            setTimeout(clearOpened,400);
         }
     }
 }
@@ -87,6 +87,11 @@ function checkMatch (event) {
 function setMatched() {
     openCards[openCards.length - 2].className = 'card match';
     openCards[openCards.length - 1].className = 'card match';
+
+    //if there are 16 cards in the openCards array, then we have matched all cards
+    if (openCards.length === 16) {
+        setTimeout(resultsScreen(),400);
+    }
 }
 
 //flip over and delete the last two cards from the array
@@ -102,6 +107,10 @@ function incrementMoves() {
     const moveCounter = document.querySelector('.moves');
 
     moveCounter.textContent ++;
+}
+
+function resultsScreen() {
+    deck.style.display = 'none';
 }
 
 const shuffledDeck = shuffle(loadDeckArray());
