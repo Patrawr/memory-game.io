@@ -42,26 +42,27 @@ function rebuildDeck(shuffledDeck) {
     }
 }
 
+//********************************************** */
+//       MATCHING LOGIC
+//********************************************** */
 function selectCard(event) {
     //if a card clicked in the deck
     if(event.target.nodeName === 'LI') {
-        showCard(event);
-    }
-}
+        //flip a card if it's closed
+        if (event.target.className === 'card') {
+            event.target.className = 'card open show';
 
-function showCard(event) {
-    //flip a card if it's closed
-    if (event.target.className === 'card') {
-        event.target.className = 'card open show';
+            incrementMoves();
+            openCards.push(event.target);
 
-        openCards.push(event.target);
-        
-        if (openCards.length >= 2) {
-            checkMatch(event);    
+            if (openCards.length >= 2) {
+                checkMatch(event);    
+            }
+            
         }
-        
     }
 }
+
 
 //check to see if the just flipped card matches the currently flipped card
 function checkMatch (event) {
@@ -94,6 +95,13 @@ function clearOpened() {
     openCards[openCards.length - 1].className = 'card';
     
     openCards.splice(openCards.length - 2,2);
+}
+
+//*********************************************************** */
+function incrementMoves() {
+    const moveCounter = document.querySelector('.moves');
+
+    moveCounter.textContent ++;
 }
 
 const shuffledDeck = shuffle(loadDeckArray());
