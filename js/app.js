@@ -12,7 +12,7 @@ function loadDeckArray() {
     const deck = document.querySelector('.deck');
     let deckArray = [];
     deck.style.display = 'flex';
-    
+
     while (deck.firstElementChild) {
         //initializing state of cards
         deck.firstElementChild.className = 'card';
@@ -64,19 +64,14 @@ function loadStars() {
 }
 
 //handles the star rating
-//19 - 2 Stars
-//30 - 1 Stars
-//35 - 0 Star
+//20 - 2 Stars
+//31 - 1 Stars
 function checkRating() {
-    if (moveCounter.textContent === "19") {
+    if (moveCounter.textContent === "20") {
         currentStars[starCounter-1].className = 'fa fa-star-o';
         starCounter--;
     }
-    else if (moveCounter.textContent === "30") {
-        currentStars[starCounter-1].className = 'fa fa-star-o';
-        starCounter--;
-    }
-    else if (moveCounter.textContent === "35") {
+    else if (moveCounter.textContent === "31") {
         currentStars[starCounter-1].className = 'fa fa-star-o';
         starCounter--;
     }
