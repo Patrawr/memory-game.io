@@ -2,6 +2,9 @@
  * Create a list that holds all of your cards
  */
 let openCards = [];
+let currentStars = [];
+const moveCounter = document.querySelector('.moves');
+let starCounter = 3;
 
 
 //loads all the cards into an array that will be shuffled later
@@ -17,7 +20,9 @@ function loadDeckArray() {
         deck.removeChild(deck.firstElementChild);
     }
 
+    loadStars();
     return deckArray;
+
 }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -45,6 +50,26 @@ function rebuildDeck(shuffledDeck) {
     }
 }
 
+function loadStars() {
+    let stars = document.querySelector('.stars').firstElementChild;
+    currentStars = [];
+    starCounter = 3;
+
+    for (let i = 0; i < 3; i++) {
+        stars.firstElementChild.className = 'fa fa-star';
+        currentStars.push(stars.firstElementChild);
+        stars = stars.nextElementSibling;
+    } 
+}
+
+//handles the star rating
+//18 - 3 Stars
+//25 - 2 Stars
+//30 - 1 Star
+function checkRating() {
+
+}
+
 //********************************************** */
 //       MATCHING LOGIC
 //********************************************** */
@@ -53,7 +78,7 @@ function selectCard(event) {
     if(event.target.nodeName === 'LI') {
         //flip a card if it's closed
         if (event.target.className === 'card') {
-            event.target.className = 'card open show';
+            event.target.classList.add('open','show');
 
             incrementMoves();
             openCards.push(event.target);
@@ -70,8 +95,8 @@ function selectCard(event) {
 //check to see if the just flipped card matches the currently flipped card
 function checkMatch (event) {
     //if the last two cards in the array are currently opened, check for matches
-    if(openCards[openCards.length - 2].className === 'card open show' && 
-       openCards[openCards.length - 1].className === 'card open show') {
+    if(openCards[openCards.length - 2].classList.contains('show') && 
+       openCards[openCards.length - 1].classList.contains('show')) {
         const firstCardType = openCards[openCards.length - 2].firstElementChild.className;
         const secondCardType = openCards[openCards.length - 1].firstElementChild.className;
 
@@ -93,7 +118,7 @@ function setMatched() {
 
     //if there are 16 cards in the openCards array, then we have matched all cards
     if (openCards.length === 16) {
-        setTimeout(resultsScreen(),400);
+        setTimeout(resultsScreen(),600);
     }
 }
 
@@ -107,9 +132,8 @@ function clearOpened() {
 
 //*********************************************************** */
 function incrementMoves() {
-    const moveCounter = document.querySelector('.moves');
-
     moveCounter.textContent ++;
+    checkRating();
 }
 
 function resultsScreen() {
@@ -122,7 +146,6 @@ function restartGame() {
 
     openCards = [];
 
-    const moveCounter = document.querySelector('.moves');
     moveCounter.textContent = 0;
 
 }
