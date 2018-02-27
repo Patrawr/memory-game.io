@@ -11,7 +11,8 @@ let starCounter = 3;
 function loadDeckArray() {
     const deck = document.querySelector('.deck');
     let deckArray = [];
-
+    deck.style.display = 'flex';
+    
     while (deck.firstElementChild) {
         //initializing state of cards
         deck.firstElementChild.className = 'card';
@@ -63,11 +64,22 @@ function loadStars() {
 }
 
 //handles the star rating
-//18 - 3 Stars
-//25 - 2 Stars
-//30 - 1 Star
+//19 - 2 Stars
+//30 - 1 Stars
+//35 - 0 Star
 function checkRating() {
-
+    if (moveCounter.textContent === "19") {
+        currentStars[starCounter-1].className = 'fa fa-star-o';
+        starCounter--;
+    }
+    else if (moveCounter.textContent === "30") {
+        currentStars[starCounter-1].className = 'fa fa-star-o';
+        starCounter--;
+    }
+    else if (moveCounter.textContent === "35") {
+        currentStars[starCounter-1].className = 'fa fa-star-o';
+        starCounter--;
+    }
 }
 
 //********************************************** */
@@ -147,7 +159,6 @@ function restartGame() {
     openCards = [];
 
     moveCounter.textContent = 0;
-
 }
 
 const shuffledDeck = shuffle(loadDeckArray());
