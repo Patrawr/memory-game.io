@@ -5,6 +5,7 @@ let openCards = [];
 let currentStars = [];
 const moveCounter = document.querySelector('.moves');
 let starCounter = 3;
+let seconds = 0;
 
 
 //loads all the cards into an array that will be shuffled later
@@ -152,10 +153,17 @@ function restartGame() {
     rebuildDeck(shuffle(loadDeckArray()));
 
     openCards = [];
-
     moveCounter.textContent = 0;
 }
 
+function runTimer() {
+
+}
+
+function pauseTimer() {
+
+}
+//**************MAIN************************************ */
 const shuffledDeck = shuffle(loadDeckArray());
 rebuildDeck(shuffledDeck);
 
@@ -164,6 +172,8 @@ deck.addEventListener('click',selectCard);
 
 const restartButton = document.querySelector('.restart');
 restartButton.addEventListener('click',restartGame);
+
+timer = setInterval(runTimer,1000);
 
 /*
  * set up the event listener for a card. If a card is clicked:
