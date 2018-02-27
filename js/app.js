@@ -6,13 +6,12 @@ let currentStars = [];
 const moveCounter = document.querySelector('.moves');
 let starCounter = 3;
 let seconds = 0;
-
+let timer;
 
 //loads all the cards into an array that will be shuffled later
 function loadDeckArray() {
     const deck = document.querySelector('.deck');
     let deckArray = [];
-    deck.style.display = 'flex';
 
     while (deck.firstElementChild) {
         //initializing state of cards
@@ -88,6 +87,10 @@ function selectCard(event) {
         if (event.target.className === 'card') {
             event.target.classList.add('open','show');
 
+            if(seconds === 0) {
+                timer = setInterval(runTimer,1000);
+            }
+
             incrementMoves();
             openCards.push(event.target);
 
@@ -146,23 +149,41 @@ function incrementMoves() {
 
 function resultsScreen() {
     deck.style.display = 'none';
+
+    clearInterval(timer);
 }
 
 //reset the game state
-function restartGame() {
-    rebuildDeck(shuffle(loadDeckArray()));
+function restartGame(event) {
+        rebuildDeck(shuffle(loadDeckArray()));
+        //show the deck if it's hidden
+        deck.style.display = 'flex';
 
-    openCards = [];
-    moveCounter.textContent = 0;
+        openCards = [];
+        moveCounter.textContent = 0;
+
+        clearInterval(timer);
+        seconds = 0;
+        document.querySelector('.timer').textContent = '00:00:00';
 }
 
+//runs on an interval, every second
 function runTimer() {
+    seconds++;
 
+    let minutes = Math.floor(seconds / 60);
+    let hours = Math.floor(minutes / 60);
+
+    minutes = minutes - (hours * 60)
+    let calcSeconds = seconds - ((hours * 3600) + (minutes * 60));
+
+    let displaySeconds = calcSeconds.toString().padStart(2,"0");
+    let displayMinutes = minutes.toString().padStart(2,"0");
+    let displayHours = hours.toString().padStart(2,"0");
+
+    document.querySelector('.timer').textContent = `${displayHours}:${displayMinutes}:${displaySeconds}`;
 }
 
-function pauseTimer() {
-
-}
 //**************MAIN************************************ */
 const shuffledDeck = shuffle(loadDeckArray());
 rebuildDeck(shuffledDeck);
@@ -173,7 +194,6 @@ deck.addEventListener('click',selectCard);
 const restartButton = document.querySelector('.restart');
 restartButton.addEventListener('click',restartGame);
 
-timer = setInterval(runTimer,1000);
 
 /*
  * set up the event listener for a card. If a card is clicked:
