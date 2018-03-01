@@ -150,17 +150,27 @@ function incrementMoves() {
 function resultsScreen() {
     deck.style.display = 'none';
     document.querySelector('.score-panel').style.display= 'none';
+    document.querySelector('.results').style.display = 'flex';
 
     clearInterval(timer);
+
+    const time = document.querySelector('.timer').textContent;
+
+    document.querySelector('.results-score').style.textContent = 
+     `You won with ${moves.textContent} and ${starCounter} stars!!`;
+    document.querySelector('.results-time').style.textContent = 
+    `You took ${time}`;
+    
 }
 
 //reset the game state
 function restartGame(event) {
         rebuildDeck(shuffle(loadDeckArray()));
-        //show the deck if it's hidden
+        //show the deck,score panel if it's hidden
         deck.style.display = 'flex';
         document.querySelector('.score-panel').style.display= 'block';
-        
+        document.querySelector('.results').style.display = 'none';
+
         openCards = [];
         moveCounter.textContent = 0;
 
@@ -193,9 +203,11 @@ rebuildDeck(shuffledDeck);
 const deck = document.querySelector('.deck');
 deck.addEventListener('click',selectCard);
 
-const restartButton = document.querySelector('.fa-redo-alt');
-restartButton.addEventListener('click',restartGame);
+const resetButton = document.querySelector('.restart');
+resetButton.addEventListener('click',restartGame);
 
+const restartButton = document.querySelector('.restart-button');
+restartButton.addEventListener('click',restartGame);
 
 /*
  * set up the event listener for a card. If a card is clicked:
