@@ -149,6 +149,7 @@ function incrementMoves() {
 
 function resultsScreen() {
     deck.style.display = 'none';
+    document.querySelector('.score-panel').style.display= 'none';
 
     clearInterval(timer);
 }
@@ -158,7 +159,8 @@ function restartGame(event) {
         rebuildDeck(shuffle(loadDeckArray()));
         //show the deck if it's hidden
         deck.style.display = 'flex';
-
+        document.querySelector('.score-panel').style.display= 'block';
+        
         openCards = [];
         moveCounter.textContent = 0;
 
@@ -191,7 +193,7 @@ rebuildDeck(shuffledDeck);
 const deck = document.querySelector('.deck');
 deck.addEventListener('click',selectCard);
 
-const restartButton = document.querySelector('.restart');
+const restartButton = document.querySelector('.fa-redo-alt');
 restartButton.addEventListener('click',restartGame);
 
 

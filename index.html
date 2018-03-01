@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <title>Matching Game</title>
     <meta name="description" content="">
-    <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"> -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
     <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="node_modules/animate.css/animate.min.css"
@@ -30,8 +31,20 @@
             </span>
 
             <div class="restart">
-        		<i class="fa fa-repeat"></i>
+        		<i class="fas fa-redo-alt"></i>
         	</div>
+        </section>
+
+        <section class="results">
+            <i class="far fa-check-circle"></i>
+            <div class="results-heading">
+                <h1>Congratulations!</h1>
+            </div>
+            <div class="results-details">
+                <h4 class="rs results-score">You won with 0 moves and 3 stars!!</h3>
+                <h4 class="rs results-time">You took 00:00:00</h3>
+            </div>
+            <button class="restart-button">Play Again?</button>
         </section>
 
         <ul class="deck">
