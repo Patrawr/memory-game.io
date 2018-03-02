@@ -156,15 +156,17 @@ function resultsScreen() {
 
     const time = document.querySelector('.timer').textContent;
 
-    document.querySelector('.results-score').style.textContent = 
-     `You won with ${moves.textContent} and ${starCounter} stars!!`;
-    document.querySelector('.results-time').style.textContent = 
-    `You took ${time}`;
+    const score = document.querySelector('.results-score');
+    score.textContent = `You won with ${moveCounter.textContent} moves and ${starCounter} stars!!`;
+    
+    const resultTime = document.querySelector('.results-time');
+    resultTime.textContent = `You took ${time}`;
     
 }
 
 //reset the game state
 function restartGame(event) {
+    if(event.target.className = 'fa fa-repeat') {
         rebuildDeck(shuffle(loadDeckArray()));
         //show the deck,score panel if it's hidden
         deck.style.display = 'flex';
@@ -177,6 +179,7 @@ function restartGame(event) {
         clearInterval(timer);
         seconds = 0;
         document.querySelector('.timer').textContent = '00:00:00';
+    }
 }
 
 //runs on an interval, every second
