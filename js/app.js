@@ -6,7 +6,7 @@ let currentStars = [];
 const moveCounter = document.querySelector('.moves');
 let starCounter = 3;
 let seconds = 0;
-let timer;
+let timer = 0;
 
 //loads all the cards into an array that will be shuffled later
 function loadDeckArray() {
@@ -87,7 +87,7 @@ function selectCard(event) {
         if (event.target.className === 'card') {
             event.target.classList.add('open','show');
 
-            if(seconds === 0) {
+            if(seconds === 0 && timer < 1) {
                 timer = setInterval(runTimer,1000);
             }
 
@@ -166,7 +166,7 @@ function resultsScreen() {
 
 //reset the game state
 function restartGame(event) {
-    if(event.target.className = 'fa fa-repeat') {
+    if(event.target.className = 'fa fa-repeat' || 'restart-button') {
         rebuildDeck(shuffle(loadDeckArray()));
         //show the deck,score panel if it's hidden
         deck.style.display = 'flex';
@@ -177,6 +177,7 @@ function restartGame(event) {
         moveCounter.textContent = 0;
 
         clearInterval(timer);
+        timer = 0;
         seconds = 0;
         document.querySelector('.timer').textContent = '00:00:00';
     }
