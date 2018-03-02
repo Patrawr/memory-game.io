@@ -7,6 +7,7 @@ const moveCounter = document.querySelector('.moves');
 let starCounter = 3;
 let seconds = 0;
 let timer = 0;
+let matches = 0;
 
 //loads all the cards into an array that will be shuffled later
 function loadDeckArray() {
@@ -127,9 +128,11 @@ function setMatched() {
     openCards[openCards.length - 2].className = 'card match';
     openCards[openCards.length - 1].className = 'card match';
 
+    matches++;
+
     //if there are 16 cards in the openCards array, then we have matched all cards
-    if (openCards.length === 16) {
-        setTimeout(resultsScreen(),600);
+    if (matches === 16) {
+        setTimeout(resultsScreen,600);
     }
 }
 
@@ -138,7 +141,7 @@ function clearOpened() {
     openCards[openCards.length - 2].className = 'card';
     openCards[openCards.length - 1].className = 'card';
     
-    openCards.splice(openCards.length - 2,2);
+    openCards = [];
 }
 
 //*********************************************************** */
