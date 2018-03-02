@@ -85,7 +85,8 @@ function selectCard(event) {
     //if a card clicked in the deck
     if(event.target.nodeName === 'LI') {
         //flip a card if it's closed
-        if (event.target.className === 'card') {
+        if (event.target.className === 'card' &&
+            openCards.length < 2) {
             event.target.classList.add('open','show');
 
             if(seconds === 0 && timer < 1) {
@@ -95,7 +96,7 @@ function selectCard(event) {
             incrementMoves();
             openCards.push(event.target);
 
-            if (openCards.length >= 2) {
+            if (openCards.length === 2) {
                 checkMatch(event);    
             }
             
@@ -115,6 +116,7 @@ function checkMatch (event) {
         //if cards match
         if (firstCardType === secondCardType) {
             setMatched();
+            openCards = [];
         }
         //if not, flip them back over and clear them from the openCards array
         else {
@@ -131,7 +133,7 @@ function setMatched() {
     matches++;
 
     //if there are 16 cards in the openCards array, then we have matched all cards
-    if (matches === 16) {
+    if (matches === 8) {
         setTimeout(resultsScreen,600);
     }
 }
