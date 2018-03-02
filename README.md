@@ -3,7 +3,7 @@
 ## Table of Contents
 
 * [Instructions](#instructions)
-* [Dependancies](#dependancies)
+* [Dependencies](#dependencies)
 * [Contributing](#contributing)
 
 ## Instructions
@@ -14,7 +14,7 @@ If two cards match, they will stay flipped. Match all the cards to win the game!
 
 A timer is started when you click your first card. There is also a star rating that is dependant on the number of moves it takes for you to complete the game. The less moves the better!
 ___
-## Dependancies
+## Dependencies
 Background image provided by Udacity.
 
 Card symbols obtained from font awesome 4.6.1 font pack.
