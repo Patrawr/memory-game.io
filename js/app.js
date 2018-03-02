@@ -152,6 +152,7 @@ function incrementMoves() {
     checkRating();
 }
 
+//displayed at end of game, outlining player performance
 function resultsScreen() {
     deck.style.display = 'none';
     document.querySelector('.score-panel').style.display= 'none';
@@ -165,7 +166,7 @@ function resultsScreen() {
     score.textContent = `You won with ${moveCounter.textContent} moves and ${starCounter} stars!!`;
     
     const resultTime = document.querySelector('.results-time');
-    resultTime.textContent = `You took ${time}`;
+    resultTime.textContent = `Playing time: ${time}`;
     
 }
 
@@ -178,6 +179,7 @@ function restartGame(event) {
         document.querySelector('.score-panel').style.display= 'block';
         document.querySelector('.results').style.display = 'none';
 
+        //resets the open cards
         openCards = [];
         moveCounter.textContent = 0;
 
@@ -189,6 +191,8 @@ function restartGame(event) {
 }
 
 //runs on an interval, every second
+//seconds is incremented ever second and below calculations convert to 
+//hours, minutes days format
 function runTimer() {
     seconds++;
 
@@ -198,6 +202,8 @@ function runTimer() {
     minutes = minutes - (hours * 60)
     let calcSeconds = seconds - ((hours * 3600) + (minutes * 60));
 
+    //adds 0 padding to the left of the numbers so it appears in "clock" format
+    //00:00:00
     let displaySeconds = calcSeconds.toString().padStart(2,"0");
     let displayMinutes = minutes.toString().padStart(2,"0");
     let displayHours = hours.toString().padStart(2,"0");
@@ -209,22 +215,14 @@ function runTimer() {
 const shuffledDeck = shuffle(loadDeckArray());
 rebuildDeck(shuffledDeck);
 
+//main card click event
 const deck = document.querySelector('.deck');
 deck.addEventListener('click',selectCard);
 
+//reset button in the top right during play
 const resetButton = document.querySelector('.restart');
 resetButton.addEventListener('click',restartGame);
 
+//restart button on results screen
 const restartButton = document.querySelector('.restart-button');
 restartButton.addEventListener('click',restartGame);
-
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
