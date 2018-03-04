@@ -87,7 +87,7 @@ function selectCard(event) {
         //flip a card if it's closed
         if (event.target.className === 'card' &&
             openCards.length < 2) {
-            event.target.classList.add('open','show');
+            event.target.classList.add('open','show','animated','flip');
 
             if(seconds === 0 && timer < 1) {
                 timer = setInterval(runTimer,1000);
@@ -120,6 +120,8 @@ function checkMatch (event) {
         }
         //if not, flip them back over and clear them from the openCards array
         else {
+            openCards[openCards.length - 2].classList.add('animated','shake');
+            openCards[openCards.length - 1].classList.add('animated','shake'); 
             setTimeout(clearOpened,400);
         }
     }
