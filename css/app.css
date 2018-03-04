@@ -141,3 +141,17 @@ h1 {
     color: #82c91e;
     font-size: 2em;
 }   
+
+@keyframes cardFlip {
+    from {
+        transform: rotateY(0);
+    }
+    to {
+        transform: rotateY(180deg);
+    }
+}
+
+.animateFlip {
+    animation-name: cardFlip;
+    animation-duration: 1s;
+}

@@ -87,7 +87,7 @@ function selectCard(event) {
         //flip a card if it's closed
         if (event.target.className === 'card' &&
             openCards.length < 2) {
-            event.target.classList.add('open','show','animated','flip');
+            event.target.classList.add('open','show');
 
             if(seconds === 0 && timer < 1) {
                 timer = setInterval(runTimer,1000);
