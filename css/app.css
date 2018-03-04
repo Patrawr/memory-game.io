@@ -171,4 +171,16 @@ h1 {
         height: 19vw;
     } */
 
+@keyframes cardFlip {
+    from {
+        transform: rotateY(0);
+    }
+    to {
+        transform: rotateY(180deg);
+    }
+}
+
+.animateFlip {
+    animation-name: cardFlip;
+    animation-duration: 1s;
 }
