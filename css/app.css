@@ -171,6 +171,10 @@ h1 {
         max-height: 20vw;
         margin: 1%;
     }
+
+    .results {
+        width: 90%;
+    }
 }
 
 @keyframes cardFlip {

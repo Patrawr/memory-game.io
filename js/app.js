@@ -21,8 +21,6 @@ function loadDeckArray() {
         deckArray.push(deck.firstElementChild);
         deck.removeChild(deck.firstElementChild);
     }
-
-    loadStars();
     return deckArray;
 
 }
@@ -176,6 +174,7 @@ function resultsScreen() {
 function restartGame(event) {
     if(event.target.className = 'fa fa-repeat' || 'restart-button') {
         rebuildDeck(shuffle(loadDeckArray()));
+        loadStars();
         //show the deck,score panel if it's hidden
         deck.style.display = 'flex';
         document.querySelector('.score-panel').style.display= 'block';
@@ -187,6 +186,7 @@ function restartGame(event) {
         matches = 0;
 
         clearInterval(timer);
+        //keeps track of timer
         timer = 0;
         seconds = 0;
         document.querySelector('.timer').textContent = '00:00:00';
