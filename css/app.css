@@ -40,10 +40,13 @@ h1 {
 .deck {
     width: 660px;
     min-height: 680px;
+
+    box-sizing: border-box;
     background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
     padding: 32px;
     border-radius: 10px;
     box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+    
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -54,12 +57,14 @@ h1 {
 .deck .card {
     height: 125px;
     width: 125px;
+
     background: #2e3d49;
     font-size: 0;
     color: #ffffff;
     border-radius: 8px;
     cursor: pointer;
     display: flex;
+    flex-basis: auto;
     justify-content: center;
     align-items: center;
     box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
@@ -141,3 +146,21 @@ h1 {
     color: #82c91e;
     font-size: 2em;
 }   
+
+/* responsive design for phones */
+@media screen and (max-width: 660px) {
+    body {
+        font-size: 1.2em;
+    }
+
+    .deck {
+        max-width: 100%;
+        height: calc(width * 1.03);
+    }
+
+    .deck .card {
+        width: 18.9%;
+        height: width;
+    }
+
+}
