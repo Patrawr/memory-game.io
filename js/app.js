@@ -127,8 +127,8 @@ function checkMatch (event) {
 
 //set both cards in the openCards array to matched
 function setMatched() {
-    openCards[openCards.length - 2].className = 'card match';
-    openCards[openCards.length - 1].className = 'card match';
+    openCards[openCards.length - 2].className = 'card match animated tada';
+    openCards[openCards.length - 1].className = 'card match animated tada';
 
     matches++;
 
