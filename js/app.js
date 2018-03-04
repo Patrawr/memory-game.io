@@ -135,7 +135,7 @@ function setMatched() {
     matches++;
 
     //if there are 16 cards in the openCards array, then we have matched all cards
-    if (matches === 8) {
+    if (matches >= 8) {
         setTimeout(resultsScreen,600);
     }
 }
@@ -184,6 +184,7 @@ function restartGame(event) {
         //resets the open cards
         openCards = [];
         moveCounter.textContent = 0;
+        matches = 0;
 
         clearInterval(timer);
         timer = 0;
