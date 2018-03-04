@@ -13,6 +13,7 @@ let matches = 0;
 function loadDeckArray() {
     const deck = document.querySelector('.deck');
     let deckArray = [];
+    loadStars();
 
     while (deck.firstElementChild) {
         //initializing state of cards
@@ -22,7 +23,6 @@ function loadDeckArray() {
         deck.removeChild(deck.firstElementChild);
     }
     return deckArray;
-
 }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -174,7 +174,7 @@ function resultsScreen() {
 function restartGame(event) {
     if(event.target.className = 'fa fa-repeat' || 'restart-button') {
         rebuildDeck(shuffle(loadDeckArray()));
-        loadStars();
+        
         //show the deck,score panel if it's hidden
         deck.style.display = 'flex';
         document.querySelector('.score-panel').style.display= 'block';
